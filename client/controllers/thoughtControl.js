@@ -57,8 +57,8 @@ const thoughtControl = {
                 {_id:req.body.userID},
                 {$pull:{thoughts:thought._id}},
                 {new:true})
-        })  .then(() => res.json({message: 'Thought has been deleted successfully!'})).catch((err) => res.status(500).json(err));
+        })  .then(() => res.json({message: 'Thoughts has been deleted successfully'})).catch((err) => res.status(500).json(err));
     },
-}
+};
 
 module.exports = thoughtControl;
