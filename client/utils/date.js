@@ -55,7 +55,7 @@ module.exports = (
 
   const minutes = (dateObj.getMinutes() < 10 ? '0' : '') + dateObj.getMinutes();
 
-// set `am` or `pm`
+// set `am` or `pm` for the time
   const dayOrNight = dateObj.getHours() >= 12 ? 'PM' : 'AM';
 
   const formatTimeStamp = `${formatMonth} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${dayOrNight}`;

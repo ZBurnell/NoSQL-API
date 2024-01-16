@@ -10,7 +10,7 @@ const thoughtControl = {
 // create a new thought
     createT (req, res) {
         Thought.create(req.body)
-        .then((dbThoughtData) => {
+            .then((dbThoughtData) => {
             return User.findOneAndUpdate(
                 {_id:req.body.userID},
                 {$push:{ thoughts:dbThoughtData._id}},
@@ -21,7 +21,8 @@ const thoughtControl = {
 
 // update thought by it's id
     updateT (req, res) {
-        Thought.findOneAndUpdate({
+        Thought.findOneAndUpdate(
+        {
             _id: req.params.id
         }, 
         {
@@ -30,14 +31,14 @@ const thoughtControl = {
         {
             runValidators: true,
             new: true
-        })  .then((thought) => {
-                !thought ? res.status(404).json({message: 'No thought found matching that ID'}) : res.json(thought);
+        })  .then((thought) => {!thought ? res.status(404).json({message: 'No thought found matching that ID'}) : res.json(thought);
         })  .catch((err) => res.status(500).json(err)); 
     },
  
 // find a thought by it's id
     findTById({ params }, res) {
-    Thought.findOne({ _id: params.id })
+    Thought.findOne(
+        { _id: params.id })
         .then((dbThoughtData) => {
             if (!dbThoughtData) {res.status(404).json({ message: "No thought found matching that ID" });
             return;
@@ -49,7 +50,8 @@ const thoughtControl = {
  
 // delete a thought by it's id
     deleteT(req, res) {
-        Thought.findOneAndDelete({_id: req.params.id})
+        Thought.findOneAndDelete(
+        {_id: req.params.id})
         .then((thought) => {
             if(!thought) {res.status(404).json({message: 'No thought found matching that ID'}) 
             }      
